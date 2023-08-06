@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
+"""interview question"""
 
 
-from typing import List
-
-
-def canUnlockAll(boxes: List[List[int]]) -> bool:
+def canUnlockAll(boxes):
+    """"""
     n = len(boxes)
-    visited = set()
-    queue = [0]
+    visited = [False] * n
+    stack = [0]
 
-    while queue:
-        box = queue.pop(0)
-        visited.add(box)
+    while stack:
+        current_box = stack.pop()
+        visited[current_box] = True
 
-        for key in boxes[box]:
-            if key not in visited:
-                queue.append(key)
+        for key in boxes[current_box]:
+            if 0 <= key < n and not visited[key]:
+                stack.append(key)
 
-    return len(visited) == n
+    return all(visited)
