@@ -1,19 +1,21 @@
 #!/usr/bin/python3
-"""interview question"""
+"""
+0-lockboxes.py
+"""
 
 
 def canUnlockAll(boxes):
-    """Return True if all boxes can be opened, else return False"""
-    n = len(boxes)
-    visited = [False] * n
-    stack = [0]
-
-    while stack:
-        current_box = stack.pop()
-        visited[current_box] = True
-
-        for key in boxes[current_box]:
-            if 0 <= key < n and not visited[key]:
-                stack.append(key)
-
-    return all(visited)
+    """
+    function to solve the lockboxes problem.
+    """
+    unlocked_keys = [0]
+    for id, box in enumerate(boxes):
+        if len(box) == 0:
+            continue
+        for key in box:
+            """
+            ensure the key has a box and the box has not been visited
+            """
+            if key != id and key < len(boxes) and key not in unlocked_keys:
+                unlocked_keys.append(key)
+    return len(unlocked_keys) == len(boxes)
