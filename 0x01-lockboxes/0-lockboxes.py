@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """interview question"""
 
 
 def canUnlockAll(boxes):
-    """"""
+    """Return True if all boxes can be opened, else return False"""
     n = len(boxes)
     visited = [False] * n
     stack = [0]
